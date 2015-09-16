@@ -1,23 +1,18 @@
-<html>
-<title> <h1> To Do List <h1> </title>
-<body>
-<style>
+
 .high {
-color:white 
+color:white; 
 background-color:red;
 }
 .mediun {
-color:white
+color:white;
 background-color:orange;
 }
 .low {
-color:black
+color:black;
 background-color:gray;
 }
 .done {
-color:cyan
+color:cyan;
 background-color:black;
 }
-</style>
-</body>
-</html>
+
