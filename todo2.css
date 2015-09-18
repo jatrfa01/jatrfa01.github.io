@@ -1,20 +1,20 @@
 
 .high {
-color:white; 
-background-color:red;
+  color:white; 
+  background-color:red;
 }
 .mediun {
-color:white;
-background-color:orange;
+  color:white;
+  background-color:orange;
 }
 
 .low {
-color:black;
-background-color:gray;
+  color:black;
+  background-color:gray;
 }
 .done {
-color:cyan;
-background-color:black;
+  color:cyan;
+  background-color:black;
 }
 
 
