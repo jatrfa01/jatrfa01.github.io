@@ -2,30 +2,27 @@
 .high {
 color:white; 
 background-color:red;
-height: 200px;
-width: 300px;
 }
 .mediun {
 color:white;
 background-color:orange;
-height: 200px;
-width: 300px;
 }
+
 .low {
 color:black;
 background-color:gray;
-height: 200px;
-width: 300px;
 }
 .done {
 color:cyan;
 background-color:black;
-height: 200px;
-width: 300px;
 }
 
 
 
 section {
   border: 5px solid black;
+  height: 200px;
+  width: 300px;
+  overflow: auto;
+  
 }
