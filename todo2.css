@@ -16,3 +16,15 @@
   color:cyan;
   background-color:black;
 }
+section {
+  height: 200px;
+  width: 300px;
+  float: left;
+  overflow: auto;
+}
+footer {
+  clear:both;
+}
+
+  
+
