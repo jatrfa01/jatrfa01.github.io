@@ -1,45 +1,29 @@
 
 .high {
   color:white; 
-  width:300px;
-  height:200px;
   background-color:red;
-  border:10px solid blue;
-  padding:20px;
-  margin:20px;
-  
 }
 .mediun {
   color:white;
   background-color:orange;
-  width:300px;
-  height:200px;
-  border:10px solid blue;
-  padding:20px;
-  margin:20px;
 }
 
 .low {
   color:black;
   background-color:gray;
-  width:300px;
-  height:200px;
-  border:10px solid blue;
-  padding:20px;
-  margin:20px;
+
 }
 .done {
   color:cyan;
   background-color:black;
-  width:300px;
-  height:200px;
-  border:10px solid blue;
-  padding:20px;
-  margin:20px;
+
 }
 section {
   height: 200px;
   width: 300px;
+  border: 10px solid blue;
+  padding: 20px;
+  margin: 20px;
   float: left;
   overflow: auto;
 }
