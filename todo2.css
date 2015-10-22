@@ -18,7 +18,7 @@
   background-color:black;
 
 }
-sections {
+.sections {
   background-color:Yellow;
   height: 200px;
   width: 300px;
@@ -27,6 +27,7 @@ sections {
   margin: 20px;
   float: left;
   overflow: auto;
+  z-index:+3;
 }
 footer {
   clear:both;
