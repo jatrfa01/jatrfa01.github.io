@@ -10,7 +10,6 @@
         width:80%;
         height:300px;
         background-color:lightblue;
-        float:left;
        }
         
       .High {
@@ -61,20 +60,16 @@
          li1.appendChild(contents2);
          li1.className= document.querySelector("#priority").value
          x.appendChild(li1);
-         <script type="javascript" src= "http://bnmnetp.github.io/cs130/listsaver.js">
-          donetask = function(){
+         cbox.onclick = donetask 
+         }
+        donetask = function(){
             if (this.checked) {
                this.parentNode.classList.add("done")
             } else {
                this.parentNode.classList.remove("done")
-            }
-         window.onload = function(){restorelist(#olid, donetask)}
-          }
-         </script>
-         cbox.onclick = donetask 
          }
-    }
-       </script> 
-        
+         }
+      
+       </script>  
         
     </body>
