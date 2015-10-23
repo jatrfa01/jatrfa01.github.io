@@ -62,7 +62,6 @@
          x.appendChild(li1);
          cbox.onclick = donetask 
          }
-         <script type="javascript" src= "http://bnmnetp.github.io/cs130/listsaver.js">
         donetask = function(){
             if (this.checked) {
                this.parentNode.classList.add("done")
@@ -70,12 +69,14 @@
                this.parentNode.classList.remove("done")
             }
         }
-         window.onload = function(){restorelist(#olid, donetask)}
+
+ 
+      </script>
+       <script type="javascript" src= "http://bnmnetp.github.io/CS130/listsaver.js"> 
+
+         window.onload = restorelist(#olid, donetask)
           }
          </script>
-       
-         }
-      
-       </script>  
+    
         
     </body>
