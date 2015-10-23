@@ -64,23 +64,23 @@
          li1=document.createElement("li");
          var cbox=document.createElement("input");
          cbox.type="checkbox"; 
-     contents2=document.createTextNode(document.querySelector("#a").value);        
+         contents2=document.createTextNode(document.querySelector("#a").value);        
          li1.appendChild(cbox);
          li1.appendChild(contents2);
          li1.className= document.querySelector("#priority").value
          x.appendChild(li1);
          cbox.onclick = donetask 
          }
-        donetask = function(){
+         donetask = function(){
             if (this.checked) {
                this.parentNode.classList.add("done")
             } else {
                this.parentNode.classList.remove("done")
             }
         
-        localSave(olid)
-        }
+           localSave(olid);
+         }
  
-    </script>
+     </script>
     </body>
     </html>
