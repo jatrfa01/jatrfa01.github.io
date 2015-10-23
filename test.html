@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     
-       <script type="javascript" src= "http://bnmnetp.github.io/CS130/listsaver.js"> 
+       <script type="text/javascript" src="http://bnmnetp.github.io/CS130/listsaver.js"></script>
 
+        <script type= "text/javascript">
         window.onload = function () {restorelist("olid", donetask)}
-         
         </script>
     
         
@@ -71,17 +71,18 @@
          x.appendChild(li1);
          cbox.onclick = donetask 
          }
+         }
          donetask = function(){
             if (this.checked) {
                this.parentNode.classList.add("done")
             } else {
                this.parentNode.classList.remove("done")
             }
-
+        localSave("olid");
          }
-         localSave(olid);
-         }
+         
  
      </script>
+     
     </body>
     </html>
