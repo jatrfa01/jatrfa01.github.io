@@ -19,10 +19,10 @@
 
 }
 sections {
-  background-color:yellow;
-  height: 200px;
+  background-color:blue;
+  height: 100px;
   width: 300px;
-  border: 10px solid blue;
+  border: 5px solid blue;
   padding: 20px;
   margin: 20px;
   float: left;
