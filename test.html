@@ -3,7 +3,7 @@
     
        <script type="javascript" src= "http://bnmnetp.github.io/CS130/listsaver.js"> 
 
-        window.onload = restorelist(#olid, donetask)
+        window.onload = function () {restorelist("olid", donetask)}
          
         </script>
     
@@ -78,7 +78,7 @@
                this.parentNode.classList.remove("done")
             }
         }
-
+        localSave(olid)
  
     </script>
     </body>
