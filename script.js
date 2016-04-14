@@ -4,5 +4,9 @@
     $("#wikiInfo").find("a:not(.references a)").attr("href", function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
     $("#wikiInfo").find("a").attr("target", "_blank"); 
   });
+  $('#search-button').on('click', function () {
+  var inputText = $.trim($('#query').val());
+  startSearch(inputText);
+  });
 
 
