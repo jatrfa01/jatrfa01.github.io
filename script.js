@@ -1,10 +1,15 @@
 // JavaScript Document
-  $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=' + inputText + '&prop=text&format=json&callback=?', function(json) { 
-    $('#wikiInfo').html(json.parse.text['*']); 
-    $("#wikiInfo").find("a:not(.references a)").attr("href", function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
-    $("#wikiInfo").find("a").attr("target", "_blank"); 
-  });
+//  $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=' + inputText + '&prop=text&format=json&callback=?', function(json) { 
+  //  $('#wikiInfo').html(json.parse.text['*']); 
+    //$("#wikiInfo").find("a:not(.references a)").attr("href", function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
+    //$("#wikiInfo").find("a").attr("target", "_blank"); 
+//  });
   function startSearch(inputText) {
+    $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=' + inputText + '&prop=text&format=json&callback=?', function(json) { 
+      $('#wikiInfo').html(json.parse.text['*']); 
+      $("#wikiInfo").find("a:not(.references a)").attr("href", function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
+      $("#wikiInfo").find("a").attr("target", "_blank"); 
+    });
     $.ajax({
     //url: 'https://ru.wikipedia.org/w/api.php?format=json&action=mobileview&redirects&prop=sections|normalizedtitle&sectionprop=toclevel|line|index&page=%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)',
     url: 'http://en.wikipedia.org/w/api.php?action=parse&page=' + inputText + '&prop=text&format=json&callback=?'
