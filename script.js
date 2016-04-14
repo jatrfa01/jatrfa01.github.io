@@ -1,5 +1,5 @@
 // JavaScript Document
-  $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=Michael_Jordan&prop=text&format=json&callback=?', function(json) { 
+  $.getJSON('http://en.wikipedia.org/w/api.php?action=parse&page=Main_Page&prop=text&format=json&callback=?', function(json) { 
     $('#wikiInfo').html(json.parse.text['*']); 
     $("#wikiInfo").find("a:not(.references a)").attr("href", function(){ return "http://www.wikipedia.org" + $(this).attr("href");}); 
     $("#wikiInfo").find("a").attr("target", "_blank"); 
