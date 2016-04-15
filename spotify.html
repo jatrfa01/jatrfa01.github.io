@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example 1 - A Simple Playlist</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="spotify_en_tools.js"></script>
+    <link type="text/css" href="styles.css" rel="stylesheet" />
+  </head>
+
+<body>
+ <div id='content' class="container font-light">
+    <h1 id='title'> Example 1 - A Simple Playlist</h1>
+    <br>
+    <div id='seed' class='centered'>
+        <span> Seed artist:
+            <input title="Artist" type="text"  size=34 id="artist" name="artist" value='God is an Astronaut'/>
+        </span>
+        <button value="go" id="go" name="go"> Go </button>
+    </div>
+    <div id="info"> </div>
+    <div id="all_results"> </div>
+    
+ </div>
+</body>
+
+<script type="text/javascript">
+jQuery.ajaxSettings.traditional = true; 
+var config = getConfig();
+function fetchArtistPlaylist(artist,  wandering, variety) {
+    var url = config.echoNestHost + 'api/v4/playlist/static';
+    $("#all_results").empty();
+    info("Creating the playlist ...");
+    $.getJSON(url, { 'artist': artist, 
+            'api_key': config.apiKey,
+            'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 'limit' : true,
+            'variety' : 1, 'results': 12, 'type':'artist-radio',  }) 
+        .done(function(data) {
+            info("");
+            if (! ('songs' in data.response)) {
+                info("Can't find that artist");
+            } else {
+                var title = "Artist radio for " + artist;
+                var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
+                $("#all_results").append(spotifyPlayButton);
+            }
+        })
+        .error( function() {
+            info("Whoops, had some trouble getting that playlist");
+        }) ;
+}
+function newArtist() {
+    var artist = $("#artist").val();
+    fetchArtistPlaylist(artist, false, .2);
+}
+function info(txt) {
+    $("#info").text(txt);
+}
+function initUI() {
+    $("#artist").on('keydown', function(evt) {
+        if (evt.keyCode == 13) {
+            newArtist();
+        }
+    });
+    $("#go").on("click", function() {
+        newArtist();
+    });
+}
+$(document).ready(function() {
+    initUI();
+});
+</script>
+</html>
