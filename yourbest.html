@@ -81,9 +81,10 @@
             border: 1px solid #999;
             width:120px;
       }*/
-      #videoNum{
+      
+      /*#videoNum{
         width:110px;
-      }
+      }*/
 	</style>
 	<title> Afaitita </title>
         <!--ajax call-->
@@ -193,11 +194,12 @@
             
             var qVar = document.getElementById("address").value;
             //console.log(qVar); prints correct
-            var videoNum=document.getElementById("videoNum").value;
+          //var videoNum=document.getElementById("videoNum").value;
             //console.log(videoNum);
             var request = gapi.client.youtube.search.list({
                 type:'video',
-                maxResults:videoNum,
+                maxResults:8,
+                //maxResults:videoNum,
                 part:'snippet',
                 q:qVar,
                 
@@ -333,8 +335,6 @@
     	<!--<div id="panel1">
         <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
     	</div>-->
-		<div id="panel2">
-        //<input id="videoNum" type="textbox" placeholder="Enter # of Video">
       	<input id="address" type="textbox" placeholder="Enter city/state/country Name">
       	<input type="button" value="Enter" onclick="codeAddress()">
         </div>
