@@ -98,9 +98,10 @@
        <!-- <script type="text/javascript" src="https://apis.google.com/js/client.js/guideCategories" >
         </script>-->
         <!--script for google map call-->
-
+      
        <!-- <script type="text/javascript" src="https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=NP&key=AIzaSyAiy1Op3hMxBzP_GJARcMqgf-Fv3oIg1mo"></script>-->
-   
+    
+
     
     
     </head>
@@ -247,7 +248,31 @@
             }
             showResponse(stTitle, stVideoId,dateTime,thumbnailsURL);
         }
+        function codeAddress() {
+            var address = document.getElementById('address').value;
+            //console.log(address); prints correct
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+                } else {
+                     alert('Geocode was not successful for the following reason: ' + status);
+                }
 
+            });
+           
+            onClientLoad();
+
+        }
+       
+        $(document).ready(function(){
+            navigator.geolocation.getCurrentPosition(initialise);
+           /*var theVideoUrl="https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=NP&key=AIzaSyAiy1Op3hMxBzP_GJARcMqgf-Fv3oIg1mo";*/
+
+        });
 	  var q = $('#query').val();
 	  var request = gapi.client.youtube.search.list({
 	    type: 'video',
@@ -281,7 +306,7 @@
         <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
     	</div>-->
     	<input id="address" type="textbox" placeholder="Enter city/state/country Name">
-      	<input type="button" value="Enter" onclick="search()">
+      	<input type="button" value="Enter" onclick="codeAddress()">
         </div>
         <!--<input id="query" id="address" value='' type="text"/> 
         <button id="search-button"  onclick = "codeAddress();"> Search </button>
