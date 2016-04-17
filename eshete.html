@@ -98,15 +98,9 @@
        <!-- <script type="text/javascript" src="https://apis.google.com/js/client.js/guideCategories" >
         </script>-->
         <!--script for google map call-->
-        <script type="text/javascript"
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC2Xz7SFE49NjB3PTXjGUjTK8MqAFBwBI&libraries=places&sensor=false">
-		</script>
+
        <!-- <script type="text/javascript" src="https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=NP&key=AIzaSyAiy1Op3hMxBzP_GJARcMqgf-Fv3oIg1mo"></script>-->
-    
-	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="apps1.js"></script>
+   
     
     
     </head>
@@ -253,63 +247,7 @@
             }
             showResponse(stTitle, stVideoId,dateTime,thumbnailsURL);
         }
-        function codeAddress() {
-            var address = document.getElementById('address').value;
-            //console.log(address); prints correct
-            geocoder.geocode( { 'address': address}, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location
-                });
-                } else {
-                     alert('Geocode was not successful for the following reason: ' + status);
-                }
 
-            });
-           
-            onClientLoad();
-
-        }
-        function initialise(location){
-            
-            console.log(location);
-            //console.log("hello");
-            var currentLocation=new google.maps.LatLng(location.coords.latitude, location.coords.longitude);
-            geocoder = new google.maps.Geocoder();
-            var mapOptions = {
-                center:currentLocation,
-                zoom: 12,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);    //map-canvas html div element, mapOtopions object that tells google how to display map
-                var marker= new google.maps.Marker({
-                    position: currentLocation,
-                    map:map //reference to variable map that contains google maps Map google.maps.Map
-
-                });
-                service = new google.maps.places.PlacesService(map);// for performSearch function
-                //google.maps.event.addListenerOnce(map,'bounds_changed',performSearch);// this ensures we wait until the map bounds are initialised before we perform the search
-                //$('#refresh').click(performSearch);// redo searchwhen ther refresh button is clicked
-                var circleOptions={
-                    strokeColor:"#0000FF",
-                    strokeOpacity:0.8,
-                    strokeWeight:1.5,
-                    fillColor: "#0000FF",
-                    map:map,
-                    center:currentLocation,
-                    radius:2000
-
-                };
-                var circle=new google.maps.Circle(circleOptions);
-        }
-
-        $(document).ready(function(){
-            navigator.geolocation.getCurrentPosition(initialise);
-           /*var theVideoUrl="https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=NP&key=AIzaSyAiy1Op3hMxBzP_GJARcMqgf-Fv3oIg1mo";*/
-
-        });
 	  var q = $('#query').val();
 	  var request = gapi.client.youtube.search.list({
 	    type: 'video',
@@ -343,7 +281,7 @@
         <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
     	</div>-->
     	<input id="address" type="textbox" placeholder="Enter city/state/country Name">
-      	<input type="button" value="Enter" onclick="codeAddress()">
+      	<input type="button" value="Enter" onclick="search()">
         </div>
         <!--<input id="query" id="address" value='' type="text"/> 
         <button id="search-button"  onclick = "codeAddress();"> Search </button>
