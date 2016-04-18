@@ -253,7 +253,7 @@
             }
             showResponse(stTitle, stVideoId,dateTime,thumbnailsURL);
         }
-        function codeAddress() {
+        function search() {
             var address = document.getElementById('artist').value;
             //console.log(address); prints correct
             geocoder.geocode( { 'address': address}, function(results, status) {
@@ -342,16 +342,16 @@
     	<!--<div id="panel1">
         <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
     	</div>-->
-    	<input id="artist" type="textbox" placeholder="Enter city/state/country Name">
+    	<!--<input id="artist" type="textbox" placeholder="Enter city/state/country Name">
         <input type="button" value="Enter" onclick="codeAddress()">
-        </div> 
+        </div> -->
         <div id='content' class="container font-light">
       <br>
        <div id='seed' class='centered'>
-        <!--<span> Enter country name :
+        span> Enter country name :
              <input title="Artist" type="text"  size=34 id="artist" name="artist" value=''/>
         </span>
-        <button value="search" id="search-button" name="search"> search </button> -->
+        <button value="search" id="search-button" name="search"> search </button> 
       </div>
       </div>
         <!--<input id="query" id="address" value='' type="text"/> 
