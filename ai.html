@@ -184,7 +184,7 @@
             search();
 
         }
-        function search() {
+        function search1() {
             //console.log(addressq);
             /*var vquery=addressq;
             console.log(vquery);
@@ -253,7 +253,7 @@
             }
             showResponse(stTitle, stVideoId,dateTime,thumbnailsURL);
         }
-        function search() {
+        function codeAddress() {
             var address = document.getElementById('artist').value;
             //console.log(address); prints correct
             geocoder.geocode( { 'address': address}, function(results, status) {
@@ -351,7 +351,7 @@
         span> Enter country name :
              <input title="Artist" type="text"  size=34 id="artist" name="artist" value=''/>
         </span>
-        <button value="search" id="search-button" name="search"> search </button> 
+        <button value="search" id="search-button" onclick="codeAddress()" name="search"> search </button> 
       </div>
       </div>
         <!--<input id="query" id="address" value='' type="text"/> 
