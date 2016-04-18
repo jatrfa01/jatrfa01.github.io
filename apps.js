@@ -92,7 +92,7 @@ searchResults[i] +
 });
 };
 $('#search-button').on('click', function () {
-var inputText = $.trim($('#query').val());
+var inputText = $.trim($('#artist').val());
 startSearch(inputText);
 });
 $(document).on('click', '.snippet-item', function (event) {
