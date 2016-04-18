@@ -19,7 +19,7 @@
             background-color: white;
 
         }
-       #address{
+       #artist{
             width:190px;
         }
 	   	    #map-canvas{
@@ -125,7 +125,7 @@
             //console.log(httpGet);
             //console.log("hello");
             //console.log(thumbnailsURL);
-            document.getElementById('address').innerHTML ="";
+            document.getElementById('artist').innerHTML ="";
           
            // console.log("hello");
            // console.log(stTitle);
@@ -148,7 +148,7 @@
                 
                 //document.getElementById('response').innerHTML += "https://www.youtube.com/watch?v=";
                 //document.getElementById('response').innerHTML += stVideoId[i]+"\n"+"\n";
-                document.getElementById("address").value="";
+                document.getElementById("artist").value="";
                 //document.getElementById("8").value="";
         }
         //document.getElementById('response').innerHTML += responseString;
@@ -199,7 +199,7 @@
         // Use the JavaScript client library to create a search.list() API call.
             var videoURL ="https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=NP&key=AIzaSyAiy1Op3hMxBzP_GJARcMqgf-Fv3oIg1mo";
             
-            var qVar = document.getElementById("address").value;
+            var qVar = document.getElementById("artist").value;
             //console.log(qVar); prints correct
           //var videoNum=document.getElementById("videoNum").value;
             //console.log(videoNum);
@@ -254,7 +254,7 @@
             showResponse(stTitle, stVideoId,dateTime,thumbnailsURL);
         }
         function codeAddress() {
-            var address = document.getElementById('address').value;
+            var address = document.getElementById('artist').value;
             //console.log(address); prints correct
             geocoder.geocode( { 'address': address}, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
@@ -342,17 +342,16 @@
     	<!--<div id="panel1">
         <input id="videoNum" type="textbox" placeholder="Enter # of Videos">
     	</div>-->
-    	<input id="address" type="textbox" placeholder="Enter city/state/country Name">
-      	<input type="button" value="Enter" onclick="codeAddress()">
-        </div>
+    	<input id="artist" type="textbox" placeholder="Enter city/state/country Name">
+        <input type="button" value="Enter" onclick="codeAddress()">
+        </div> 
         <div id='content' class="container font-light">
-       <h1 id='title'> wiki-you-spotify</h1>
       <br>
        <div id='seed' class='centered'>
-        <span> Enter artist:
+        <!--<span> Enter country name :
              <input title="Artist" type="text"  size=34 id="artist" name="artist" value=''/>
         </span>
-        <button value="search" id="search-button" name="search"> search </button>
+        <button value="search" id="search-button" name="search"> search </button> -->
       </div>
       </div>
         <!--<input id="query" id="address" value='' type="text"/> 
