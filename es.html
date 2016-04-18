@@ -1,105 +1,86 @@
-$(document).ready(function () {
-function showResult(contentHtml) {
-$('#content').html(contentHtml);
-}
-function startSearch(inputText) {
-$.ajax({
-//url: 'https://ru.wikipedia.org/w/api.php?format=json&action=mobileview&redirects&prop=sections|normalizedtitle&sectionprop=toclevel|line|index&page=%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)',
-url: 'https://en.wikipedia.org/w/api.php?format=json&action=parse&redirects&prop=text&mobileformat=html&page=' + inputText + '&section=0',
-//url: 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Main%20Page&prop=revisions&rvprop=content&callback=?',
-dataType: 'jsonp'
-}).done(function (data) {
-console.log(data);
-if (data.error) {
-switch (data.error.code) {
-case 'missingtitle':
-$.ajax({
-url: 'https://en.wikipedia.org/w/api.php?format=json&action=query&list=search&srnamespace=0&srlimit=10&srsearch=' + inputText,
-dataType: 'jsonp'
-}).done(function (data) {
-console.log(data);
-if (data.error) {
-}
-else {
-var $ul = $('<ol></ol>');
-for (var i = 0; i < data.query.search.length; i++) {
-var item = data.query.search[i];
-var $li = $('<li></li>');
-$li.append('<h3><a href="#" class="snippet-item">' + item.title +  '</a></h3>');
-$li.append(item.snippet);
-$ul.append($li);
-}
-showResult($ul);
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> wiki-you-spotify</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="spotify_en_tools.js"></script>
+    <link type="text/css" href="styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="apps.js"></script>
+  </head>
+<body>
+<div id='content' class="container font-light">
+    <h1 id='title'> wiki-you-spotify</h1>
+    <br>
+    <div id='seed' class='centered'>
+        <span> Enter artist:
+             <input title="Artist" type="text"  size=34 id="artist" name="artist" value=''/>
+        </span>
+        <button value="search" id="search-button" name="search"> search </button>
+    </div>
+</div>
+    <div id="info"> </div>
+    <div id="all_results"> </div>
+    
+ </div>
+</body>
 
 
+<script type="text/javascript">
+
+jQuery.ajaxSettings.traditional = true; 
+var config = getConfig();
+
+function fetchArtistPlaylist(artist,  wandering, variety) {
+    var url = config.echoNestHost + 'api/v4/playlist/static';
+    $("#all_results").empty();
+    info("Creating the playlist ...");
+    $.getJSON(url, { 'artist': artist, 
+            'api_key': config.apiKey,
+            'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 'limit' : true,
+            'variety' : 1, 'results': 12, 'type':'artist-radio',  }) 
+        .done(function(data) {
+            info("");
+            if (! ('songs' in data.response)) {
+                info("Can't find that artist");
+            } else {
+                var title = "Artist radio for " + artist;
+                var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
+                $("#all_results").append(spotifyPlayButton);
+            }
+        })
+        .error( function() {
+            info("Whoops, had some trouble getting that playlist");
+        }) ;
 }
 
-});
-break;
-}
-}
-else {
-showResult(data.parse.text['*']);
-}
-});
+
+function newArtist() {
+    var artist = $("#artist").val();
+    fetchArtistPlaylist(artist, false, .2);
 }
 
-var searchWikipedia = function(currentTerm){
-var url = "http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=";
-$.ajax({
-url: url + currentTerm,
-type: 'GET',
-dataType: 'jsonp',
-error: function(data){
-console.log("We got problems");
-console.log(data.status);
-},
-success: function(data){
-console.log("WooHoo!");
-//Check the browser console to see the returned data
-console.log(data);
-//Use jQuery to insert the search term into the appropriate DOM element
-//The data we want is the first item in the returned JSON, hence value "0"
-$("#searchTerm").html(data[0]);
-//The data we want is the second item in the returned JSON, hence value "1"
-//Create a var to save the array of search results
-var searchResults = data[1];
-
-/*var $ul = $('<ol></ol>');
-for (var i = 0; i < data.query.search.length; i++) {
-var item = data.query.search[i];
-var $li = $('<li></li>');
-
-$li.append('<h3><a href="#" class="snippet-item">' + item.title +  '</a></h3>');
-$li.append(item.snippet);
-$ul.append($li);*/
-//Loop through the array of results
-for (var i = 0; i < searchResults.length; i++){
-//Use 'replace' and a regular expression to substitue white space with '_' character
-var resultTerms = searchResults[i].replace(/\s/g, '_');
-var curURL = 'http://en.wikipedia.org/wiki/' + item;
-//Use jQuery's append() function to add the searchResults to the DOM
-//The argument for the append function will be a string of HTML
-$("#resultsTarget").append(
-"<p class='wikiResults'>" +
-"<a href=" + curURL + ">" +
-searchResults[i] +
-"</a>" +
-"</p>"
-);
+function info(txt) {
+    $("#info").text(txt);
 }
+
+function initUI() {
+    $("#artist").on('keydown', function(evt) {
+        if (evt.keyCode == 13) {
+            newArtist();
+        }
+    });
+    $("#search-button").on("click", function() {
+        newArtist();
+    });
 }
+
+$(document).ready(function() {
+    initUI();
 });
-};
-$('#search-button').on('click', function () {
-var inputText = $.trim($('#artist').val());
-startSearch(inputText);
-});
-$(document).on('click', '.snippet-item', function (event) {
-//event.preventDefault();
-//var newSearchTerm = $("#query").val();
-//searchWikipedia(newSearchTerm);
-var text = $(this).text();
-startSearch(text);
-});
-});
+
+</script>
+</html>
