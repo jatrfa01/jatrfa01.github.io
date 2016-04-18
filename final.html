@@ -12,6 +12,16 @@
 		font-family: "Times New Roman", Times, serif;
 		
 		}
+	#searchbar {
+		width: 100%;
+		background: gray;
+		height: 30px;
+		display:block;
+		position: fixed;
+		top: 20px;	
+		z-index: 1;
+		text-align: center;
+		}
         #bodyDOM{
             height:380px;
             margin: 0px;
@@ -348,9 +358,11 @@
       <br>
        <!--<div id='seed' class='centered'>-->
         <!--span> Enter country name : -->
+        <div id='searchbar'> 
         <input title="Artist" type="text"  size=34 id="artist" name="artist" value=''/>
        <!-- </span>-->
         <input type="button" value="search" id="search-button" onclick="codeAddress()" name="search"> search </button> 
+      </div>
       </div>
       <!--</div>-->
         <!--<input id="query" id="address" value='' type="text"/> 
